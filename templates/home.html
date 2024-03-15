@@ -19,18 +19,26 @@
 </head>
 <body>
   <div class="container pt-5">
-    <div class="row">
-          {% for employee in employees %}
-          <div class="card" style="width: 18rem;">
-            <img src="{{employee.photo.url}}" class="card-img-top" alt="{{employee.first_name}}">
-            <div class="card-body">
-              <h5 class="card-title">{{employee.first_name}} {{employee.last_name}}</h5>
-              <p class="card-text">{{employee.phone_number}}</p>
-              <a href="{% url "EmployeeDetail" emp.id %}" class="btn btn-primary">Read More</a>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for employee in employees %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td><a href="{% url "employee_detail" employee.id %}">{{employee.first_name}} {{employee.last_name}}</a></td>
+          <td>{{employee.designation}}</td>
+          <td>{{employee.phone_number}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
